@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Todo } from '../../interface/todo';
 @Component({
 	selector: 'todo-list',
 	templateUrl: './todo-list.component.html',
 	styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-	todos: object[];
+	todos: Todo[];
 	todoTitle: string;
 	idForTodo: number;
 	constructor() {}
@@ -36,7 +36,7 @@ export class TodoListComponent implements OnInit {
 		];
 	}
 
-	addTodo() {
+	addTodo(): void {
 		if (this.todoTitle.trim().length === 0) {
 			return;
 		}
@@ -50,5 +50,9 @@ export class TodoListComponent implements OnInit {
 
 		this.todoTitle = '';
 		this.idForTodo++;
+	}
+
+	deleteTodo(id: number): void {
+		this.todos = this.todos.filter((todo) => todo.id !== id);
 	}
 }
