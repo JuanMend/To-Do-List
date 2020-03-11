@@ -9,6 +9,7 @@ export class TodoListComponent implements OnInit {
 	todos: Todo[];
 	todoTitle: string;
 	idForTodo: number;
+	beforeEdit: string;
 	constructor() {}
 
 	ngOnInit() {
@@ -50,6 +51,11 @@ export class TodoListComponent implements OnInit {
 
 		this.todoTitle = '';
 		this.idForTodo++;
+	}
+	//  Not Returning Anything
+	editTodo(todo: Todo): void {
+		this.beforeEdit = todo.title;
+		todo.editing = true;
 	}
 
 	deleteTodo(id: number): void {
