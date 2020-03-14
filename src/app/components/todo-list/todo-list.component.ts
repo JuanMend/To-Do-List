@@ -10,11 +10,13 @@ export class TodoListComponent implements OnInit {
   todoTitle: string;
   idForTodo: number;
   beforeEdit: string;
+  filter: string;
   anyRemainingModel: boolean;
   constructor() {}
 
   ngOnInit() {
-    anyRemainingModel: true;
+    this.anyRemainingModel = true;
+    this.filter = "";
     this.todoTitle = "";
     this.idForTodo = 4;
     this.todos = [
@@ -77,11 +79,20 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.filter(todo => todo.id !== id);
   }
 
-  alLeastOneCompleted(): boolean {
+  clearCompleted(): void {
+    this.todos = this.todos.filter(todo => !todo.completed);
+  }
+
+  atLeastOneCompleted(): boolean {
     return this.todos.filter(todo => todo.completed).length > 0;
   }
 
-  checkAllTodos(): void {}
+  checkAllTodos(): void {
+    this.todos.forEach(
+      todo => (todo.completed = (<HTMLInputElement>event.target).checked)
+    );
+    this.anyRemainingModel = this.anyRemaining();
+  }
 
   remaining(): number {
     return this.todos.filter(todo => !todo.completed).length;
