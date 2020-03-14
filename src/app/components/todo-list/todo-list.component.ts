@@ -69,15 +69,25 @@ export class TodoListComponent implements OnInit {
     todo.editing = false;
   }
 
+  cancelEdit(todo: Todo): void {
+    todo.title = this.beforeEdit;
+    todo.editing = false;
+  }
+  deleteTodo(id: number): void {
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+
+  alLeastOneCompleted(): boolean {
+    return this.todos.filter(todo => todo.completed).length > 0;
+  }
+
+  checkAllTodos(): void {}
+
   remaining(): number {
     return this.todos.filter(todo => !todo.completed).length;
   }
 
   anyRemaining(): boolean {
     return this.remaining() !== 0;
-  }
-
-  deleteTodo(id: number): void {
-    this.todos = this.todos.filter(todo => todo.id !== id);
   }
 }
