@@ -28,7 +28,7 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.anyRemainingModel = true;
-    this.filter = "";
+    this.filter = "all";
     this.todoTitle = "";
     this.idForTodo = 4;
     this.todos = [
@@ -112,5 +112,16 @@ export class TodoListComponent implements OnInit {
 
   anyRemaining(): boolean {
     return this.remaining() !== 0;
+  }
+
+  todosFiltered(): Todo[] {
+    if (this.filter === "all") {
+      return this.todos;
+    } else if (this.filter === "active") {
+      return this.todos.filter(todo => !todo.completed);
+    } else if (this.filter === "completed") {
+      return this.todos.filter(todo => todo.completed);
+    }
+    return this.todos;
   }
 }
