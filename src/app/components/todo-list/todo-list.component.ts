@@ -34,19 +34,19 @@ export class TodoListComponent implements OnInit {
     this.todos = [
       {
         id: 1,
-        title: "Eggs",
+        title: "Cook",
         completed: false,
         editing: false
       },
       {
         id: 2,
-        title: "Milk",
+        title: "Shower",
         completed: false,
         editing: false
       },
       {
         id: 3,
-        title: "Water",
+        title: "One More Thing",
         completed: false,
         editing: false
       }
